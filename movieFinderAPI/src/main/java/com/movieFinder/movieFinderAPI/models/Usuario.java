@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Esta clase representa los datos del usuario
  */
 @Entity
-@Table(name = "USUARIOS")
+@Table(name = "USUARIO")
 public class Usuario implements Serializable {
     private int idUsuario;
     private String nombreUsuario;
