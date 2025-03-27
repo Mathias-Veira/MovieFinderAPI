@@ -3,6 +3,9 @@ package com.movieFinder.movieFinderAPI.mappers;
 import com.movieFinder.movieFinderAPI.dtos.PeliculaDTO;
 import com.movieFinder.movieFinderAPI.models.Pelicula;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Esta clase realiza las conversiones necesarias entre objetos Pelicula y PeliculaDTO
  */
@@ -23,6 +26,16 @@ public class PeliculaMapper {
      */
     public static Pelicula convertirAModelo(PeliculaDTO peliculaDTO){
         return new Pelicula(peliculaDTO.getIdPelicula(), peliculaDTO.getTituloPelicula(), peliculaDTO.getTituloOriginalPelicula(), peliculaDTO.getSinopsisPelicula(), peliculaDTO.getFechaSalidaPelicula(), peliculaDTO.getUrlPosterPelicula());
+    }
+
+    public static List<PeliculaDTO> convertirLista(List<Pelicula> pelis){
+        List<PeliculaDTO> peliculaDTOS = new ArrayList<>();
+
+        for (Pelicula pelicula: pelis) {
+            peliculaDTOS.add(convertirADTO(pelicula));
+        }
+
+        return  peliculaDTOS;
     }
 
 
