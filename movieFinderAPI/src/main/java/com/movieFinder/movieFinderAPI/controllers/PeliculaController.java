@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PeliculaController {
     @Autowired
     private PeliculaService peliculaService;
-    @GetMapping("api/movies")
+    @GetMapping("/api/movies")
     ResponseEntity<?> obtenerPeliculas(){
         return ResponseEntity.ok(peliculaService.obtenerPeliculas());
     }

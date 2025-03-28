@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class FavoritoController {
     @Autowired
     private FavoritoService favoritoService;
-    @GetMapping("api/favoritos/{idUsuario}")
+    @GetMapping("/api/favoritos/{idUsuario}")
     ResponseEntity<?> obtenerListaFavoritos(@PathVariable int idUsuario) throws IdNotFoundException {
         return new ResponseEntity<>(favoritoService.obtenerListaFavoritos(idUsuario), HttpStatus.OK);
     }
