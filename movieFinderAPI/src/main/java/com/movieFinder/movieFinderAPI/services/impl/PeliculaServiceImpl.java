@@ -36,7 +36,7 @@ public class PeliculaServiceImpl implements PeliculaService {
     /**
      * Este método llama a otro método el cual obtiene las 20 películas de la base de datos y las almacena en la base de datos
      */
-    @EventListener(ApplicationReadyEvent.class)
+    //@EventListener(ApplicationReadyEvent.class)
     @Override
     public void almacenarPeliculas() {
         //Recuperamos ambas listas en un hashmap
