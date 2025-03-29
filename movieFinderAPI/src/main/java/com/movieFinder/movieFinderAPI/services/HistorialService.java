@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface HistorialService {
     List<HistorialPeliculaDTO> obtenerHistorialPelicula(int idUsuario) throws IdNotFoundException;
+    HistorialDTO guardarPeliHistorial(int idUsuario,int idPelicula) throws IdNotFoundException;
 }
