@@ -8,33 +8,35 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-public class HistorialPelicula implements Serializable {
-    private int idHistorial;
+public class FavoritoPelicula  implements Serializable {
+    private int idFavorito;
     private int idPelicula;
     private String tituloPelicula;
     private String tituloOriginalPelicula;
     private String sinopsisPelicula;
     private LocalDate fechaSalidaPelicula;
     private String urlPosterPelicula;
-    private LocalDate fechaVisto;
 
-    public HistorialPelicula(){
+
+    public FavoritoPelicula(){
 
     }
 
-    public HistorialPelicula(int idHistorial,int idPelicula, String tituloPelicula, String tituloOriginalPelicula, String sinopsisPelicula, LocalDate fechaSalidaPelicula, String urlPosterPelicula, LocalDate fechaVisto) {
-        this.idHistorial = idHistorial;
+    public FavoritoPelicula(int idFavorito, int idPelicula, String tituloPelicula, String tituloOriginalPelicula, String sinopsisPelicula, LocalDate fechaSalidaPelicula, String urlPosterPelicula) {
+        this.idFavorito = idFavorito;
         this.idPelicula = idPelicula;
         this.tituloPelicula = tituloPelicula;
         this.tituloOriginalPelicula = tituloOriginalPelicula;
         this.sinopsisPelicula = sinopsisPelicula;
         this.fechaSalidaPelicula = fechaSalidaPelicula;
         this.urlPosterPelicula = urlPosterPelicula;
-        this.fechaVisto = fechaVisto;
     }
     @Id
     @Column(name = "id_historial")
-    public int getIdHistorial(){return idHistorial;}
+    public int getIdFavorito() {
+        return idFavorito;
+    }
+
     @Column(name = "id_pelicula")
     public int getIdPelicula() {
         return idPelicula;
@@ -59,12 +61,10 @@ public class HistorialPelicula implements Serializable {
     public String getUrlPosterPelicula() {
         return urlPosterPelicula;
     }
-    @Column(name = "fecha_visto")
-    public LocalDate getFechaVisto() {
-        return fechaVisto;
-    }
 
-    public void setIdHistorial(int idHistorial){this.idHistorial = idHistorial;}
+    public void setIdFavorito(int idFavorito) {
+        this.idFavorito = idFavorito;
+    }
 
     public void setIdPelicula(int idPelicula) {
         this.idPelicula = idPelicula;
@@ -90,7 +90,4 @@ public class HistorialPelicula implements Serializable {
         this.urlPosterPelicula = urlPosterPelicula;
     }
 
-    public void setFechaVisto(LocalDate fechaVisto) {
-        this.fechaVisto = fechaVisto;
-    }
 }

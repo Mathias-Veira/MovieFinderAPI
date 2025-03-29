@@ -4,10 +4,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
-public class ValorarPelicula {
+public class ValorarPelicula implements Serializable {
     private int idValorar;
     private int idPelicula;
     private int idUsuario;

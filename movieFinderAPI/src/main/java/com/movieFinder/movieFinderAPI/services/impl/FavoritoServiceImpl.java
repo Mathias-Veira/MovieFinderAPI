@@ -1,8 +1,10 @@
 package com.movieFinder.movieFinderAPI.services.impl;
 
 import com.movieFinder.movieFinderAPI.dtos.FavoritoDTO;
+import com.movieFinder.movieFinderAPI.dtos.FavoritoPeliculaDTO;
 import com.movieFinder.movieFinderAPI.error.IdNotFoundException;
 import com.movieFinder.movieFinderAPI.mappers.FavoritoMapper;
+import com.movieFinder.movieFinderAPI.mappers.FavoritoPeliculaMapper;
 import com.movieFinder.movieFinderAPI.models.Favorito;
 import com.movieFinder.movieFinderAPI.repositories.FavoritoRepository;
 import com.movieFinder.movieFinderAPI.repositories.PeliculaRepository;
@@ -26,11 +28,11 @@ public class FavoritoServiceImpl implements FavoritoService {
     @Autowired
     private PeliculaRepository peliculaRepository;
     @Override
-    public List<FavoritoDTO> obtenerListaFavoritos(int idUsuario) throws IdNotFoundException {
+    public List<FavoritoPeliculaDTO> obtenerListaFavoritos(int idUsuario) throws IdNotFoundException {
         if (!usuarioRepository.existsById(idUsuario)) {
             throw new IdNotFoundException("El usuario no existe");
         }
-        return FavoritoMapper.convertirLista(favoritoRepository.obtenerListaFavoritos(idUsuario));
+        return FavoritoPeliculaMapper.convertirLista(favoritoRepository.obtenerListaFavoritos(idUsuario));
 
     }
 
