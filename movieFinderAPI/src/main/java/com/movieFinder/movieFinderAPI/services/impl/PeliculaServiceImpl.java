@@ -2,6 +2,7 @@ package com.movieFinder.movieFinderAPI.services.impl;
 
 import com.movieFinder.movieFinderAPI.dtos.PeliculaDTO;
 import com.movieFinder.movieFinderAPI.dtos.PeliculaGeneroDTO;
+import com.movieFinder.movieFinderAPI.error.IdNotFoundException;
 import com.movieFinder.movieFinderAPI.mappers.PeliculaMapper;
 import com.movieFinder.movieFinderAPI.repositories.PeliculaRepository;
 import com.movieFinder.movieFinderAPI.services.PeliculaGeneroService;
@@ -130,5 +131,10 @@ public class PeliculaServiceImpl implements PeliculaService {
     public List<PeliculaDTO> obtenerPeliculas() {
         PageRequest pageable = PageRequest.of(0,100);
         return PeliculaMapper.convertirLista(peliculaRepository.findMoviesByDate(pageable));
+    }
+
+    @Override
+    public PeliculaDTO obtenerPeliculaById(int idPelicula) throws IdNotFoundException {
+        return PeliculaMapper.convertirADTO(peliculaRepository.findById(idPelicula).orElseThrow(()-> new IdNotFoundException("La película no existe")));
     }
 }
