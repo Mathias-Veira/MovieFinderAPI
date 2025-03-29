@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface FavoritoService {
     List<FavoritoDTO> obtenerListaFavoritos(int idUsuario) throws IdNotFoundException;
+    FavoritoDTO guardarPeliFavoritos(int idUsuario,int idPelicula) throws IdNotFoundException;
 }
