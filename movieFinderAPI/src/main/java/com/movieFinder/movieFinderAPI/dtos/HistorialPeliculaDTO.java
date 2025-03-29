@@ -3,6 +3,7 @@ package com.movieFinder.movieFinderAPI.dtos;
 import java.time.LocalDate;
 
 public class HistorialPeliculaDTO {
+    private int idHistorial;
     private int idPelicula;
     private String tituloPelicula;
     private String tituloOriginalPelicula;
@@ -15,7 +16,8 @@ public class HistorialPeliculaDTO {
 
     }
 
-    public HistorialPeliculaDTO(int idPelicula, String tituloPelicula, String tituloOriginalPelicula, String sinopsisPelicula, LocalDate fechaSalidaPelicula, String urlPosterPelicula, LocalDate fechaVisto) {
+    public HistorialPeliculaDTO(int idHistorial,int idPelicula, String tituloPelicula, String tituloOriginalPelicula, String sinopsisPelicula, LocalDate fechaSalidaPelicula, String urlPosterPelicula, LocalDate fechaVisto) {
+        this.idHistorial = idHistorial;
         this.idPelicula = idPelicula;
         this.tituloPelicula = tituloPelicula;
         this.tituloOriginalPelicula = tituloOriginalPelicula;
@@ -24,6 +26,7 @@ public class HistorialPeliculaDTO {
         this.urlPosterPelicula = urlPosterPelicula;
         this.fechaVisto = fechaVisto;
     }
+    public int getIdHistorial(){return idHistorial;}
 
     public int getIdPelicula() {
         return idPelicula;
@@ -52,6 +55,8 @@ public class HistorialPeliculaDTO {
     public LocalDate getFechaVisto() {
         return fechaVisto;
     }
+
+    public void setIdHistorial(int idHistorial){this.idHistorial = idHistorial;}
 
     public void setIdPelicula(int idPelicula) {
         this.idPelicula = idPelicula;

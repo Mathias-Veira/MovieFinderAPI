@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 @Entity
 public class HistorialPelicula {
+    private int idHistorial;
     private int idPelicula;
     private String tituloPelicula;
     private String tituloOriginalPelicula;
@@ -20,7 +21,8 @@ public class HistorialPelicula {
 
     }
 
-    public HistorialPelicula(int idPelicula, String tituloPelicula, String tituloOriginalPelicula, String sinopsisPelicula, LocalDate fechaSalidaPelicula, String urlPosterPelicula, LocalDate fechaVisto) {
+    public HistorialPelicula(int idHistorial,int idPelicula, String tituloPelicula, String tituloOriginalPelicula, String sinopsisPelicula, LocalDate fechaSalidaPelicula, String urlPosterPelicula, LocalDate fechaVisto) {
+        this.idHistorial = idHistorial;
         this.idPelicula = idPelicula;
         this.tituloPelicula = tituloPelicula;
         this.tituloOriginalPelicula = tituloOriginalPelicula;
@@ -30,6 +32,8 @@ public class HistorialPelicula {
         this.fechaVisto = fechaVisto;
     }
     @Id
+    @Column(name = "id_historial")
+    public int getIdHistorial(){return idHistorial;}
     @Column(name = "id_pelicula")
     public int getIdPelicula() {
         return idPelicula;
@@ -58,6 +62,8 @@ public class HistorialPelicula {
     public LocalDate getFechaVisto() {
         return fechaVisto;
     }
+
+    public void setIdHistorial(int idHistorial){this.idHistorial = idHistorial;}
 
     public void setIdPelicula(int idPelicula) {
         this.idPelicula = idPelicula;

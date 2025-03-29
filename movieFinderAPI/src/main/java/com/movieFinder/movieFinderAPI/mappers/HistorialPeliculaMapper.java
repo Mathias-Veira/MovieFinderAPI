@@ -16,7 +16,7 @@ public class HistorialPeliculaMapper {
      * @return objeto de la clase HistorialPeliculaDTO
      */
     public static HistorialPeliculaDTO convertirADTO(HistorialPelicula historial){
-        return new HistorialPeliculaDTO(historial.getIdPelicula(), historial.getTituloPelicula(), historial.getTituloOriginalPelicula(), historial.getSinopsisPelicula(), historial.getFechaSalidaPelicula(),historial.getUrlPosterPelicula(),historial.getFechaVisto());
+        return new HistorialPeliculaDTO(historial.getIdHistorial(), historial.getIdPelicula(), historial.getTituloPelicula(), historial.getTituloOriginalPelicula(), historial.getSinopsisPelicula(), historial.getFechaSalidaPelicula(),historial.getUrlPosterPelicula(),historial.getFechaVisto());
     }
 
     /**
@@ -25,7 +25,7 @@ public class HistorialPeliculaMapper {
      * @return objeto de la clase HistorialPelicula
      */
     public static HistorialPelicula convertirAModelo(HistorialPeliculaDTO historialDTO){
-        return new HistorialPelicula(historialDTO.getIdPelicula(), historialDTO.getTituloPelicula(), historialDTO.getTituloOriginalPelicula(), historialDTO.getSinopsisPelicula(), historialDTO.getFechaSalidaPelicula(),historialDTO.getUrlPosterPelicula(),historialDTO.getFechaVisto());
+        return new HistorialPelicula(historialDTO.getIdHistorial(), historialDTO.getIdPelicula(), historialDTO.getTituloPelicula(), historialDTO.getTituloOriginalPelicula(), historialDTO.getSinopsisPelicula(), historialDTO.getFechaSalidaPelicula(),historialDTO.getUrlPosterPelicula(),historialDTO.getFechaVisto());
     }
 
     public static List<HistorialPeliculaDTO> convertirLista(List<HistorialPelicula> historialList){
