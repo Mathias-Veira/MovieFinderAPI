@@ -23,4 +23,6 @@ public class PeliculaController {
     }
     @GetMapping("/api/movie/{idPelicula}")
     ResponseEntity<?> obtenerPeliculaById(@PathVariable int idPelicula) throws IdNotFoundException {return new ResponseEntity<>(peliculaService.obtenerPeliculaById(idPelicula), HttpStatus.OK);}
+    @GetMapping("/api/movies/genres/{idGenero}")
+    ResponseEntity<?> obtenerPeliculaByGenreId(@PathVariable int idGenero){return new ResponseEntity<>(peliculaService.findMoviesByGenreId(idGenero),HttpStatus.OK);}
 }

@@ -137,4 +137,9 @@ public class PeliculaServiceImpl implements PeliculaService {
     public PeliculaDTO obtenerPeliculaById(int idPelicula) throws IdNotFoundException {
         return PeliculaMapper.convertirADTO(peliculaRepository.findById(idPelicula).orElseThrow(()-> new IdNotFoundException("La película no existe")));
     }
+
+    @Override
+    public List<PeliculaDTO> findMoviesByGenreId(int idGenero) {
+        return PeliculaMapper.convertirLista(peliculaRepository.findMoviesByGenreId(idGenero));
+    }
 }
