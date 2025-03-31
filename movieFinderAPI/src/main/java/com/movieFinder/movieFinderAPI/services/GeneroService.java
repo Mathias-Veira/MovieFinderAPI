@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface GeneroService {
     List<GeneroDTO> obtenerGeneros();
-    List<GeneroDTO> obtenerGeneros(int idPelicula) throws IdNotFoundException;
+    List<GeneroDTO> obtenerGenerosByMovieId(int idPelicula) throws IdNotFoundException;
 }

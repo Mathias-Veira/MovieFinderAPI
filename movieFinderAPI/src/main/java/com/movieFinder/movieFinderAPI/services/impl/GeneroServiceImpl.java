@@ -26,7 +26,7 @@ public class GeneroServiceImpl implements GeneroService {
     }
 
     @Override
-    public List<GeneroDTO> obtenerGeneros(int idPelicula) throws IdNotFoundException {
+    public List<GeneroDTO> obtenerGenerosByMovieId(int idPelicula) throws IdNotFoundException {
         if(!peliculaRepository.existsById(idPelicula)){
             throw new IdNotFoundException("La película no existe");
         }
