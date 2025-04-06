@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class Usuario implements Serializable {
     private int idUsuario;
     private String nombreUsuario;
+    private String emailUsuario;
     private String passwordUsuario;
 
     /**
@@ -24,10 +25,13 @@ public class Usuario implements Serializable {
      * Constructor completo
      * @param idUsuario identificador del usuario
      * @param nombreUsuario nombre del usuario
+     * @param emailUsuario email del usuario
+     * @param passwordUsuario contraseña usuario
      */
-    public Usuario(int idUsuario, String nombreUsuario, String passwordUsuario) {
+    public Usuario(int idUsuario, String nombreUsuario,String emailUsuario, String passwordUsuario) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
+        this.emailUsuario = emailUsuario;
         this.passwordUsuario = passwordUsuario;
     }
 
@@ -49,6 +53,9 @@ public class Usuario implements Serializable {
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
+    @Column(name = "email_usuario")
+    public String getEmailUsuario(){return emailUsuario;}
+    public void setEmailUsuario(String emailUsuario){this.emailUsuario = emailUsuario;}
     @Column(name = "password_usuario")
     public String getPasswordUsuario() {
         return passwordUsuario;

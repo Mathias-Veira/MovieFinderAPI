@@ -13,7 +13,7 @@ public class UsuarioMapper {
      * @return objeto de la clase UsuarioDTO
      */
     public static UsuarioDTO convertirADTO(Usuario usuario){
-        return new UsuarioDTO(usuario.getIdUsuario(), usuario.getNombreUsuario());
+        return new UsuarioDTO(usuario.getIdUsuario(), usuario.getNombreUsuario(), usuario.getEmailUsuario());
     }
 
     /**
@@ -22,6 +22,6 @@ public class UsuarioMapper {
      * @return objeto de la clase Usuario
      */
     public static Usuario convertirAModelo(UsuarioDTO usuarioDTO){
-        return new Usuario(usuarioDTO.getIdUsuario(), usuarioDTO.getNombreUsuario(), usuarioDTO.getPasswordUsuario());
+        return new Usuario(usuarioDTO.getIdUsuario(), usuarioDTO.getNombreUsuario(), usuarioDTO.getEmailUsuario(), usuarioDTO.getPasswordUsuario());
     }
 }

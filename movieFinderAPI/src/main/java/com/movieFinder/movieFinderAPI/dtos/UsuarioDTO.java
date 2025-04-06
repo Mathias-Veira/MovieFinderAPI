@@ -6,6 +6,7 @@ package com.movieFinder.movieFinderAPI.dtos;
 public class UsuarioDTO {
     private int idUsuario;
     private String nombreUsuario;
+    private String emailUsuario;
     private String passwordUsuario;
 
     /**
@@ -20,10 +21,10 @@ public class UsuarioDTO {
      * @param idUsuario identificador del usuario
      * @param nombreUsuario nombre del usuario
      */
-    public UsuarioDTO(int idUsuario, String nombreUsuario) {
+    public UsuarioDTO(int idUsuario, String nombreUsuario,String emailUsuario) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
-
+        this.emailUsuario = emailUsuario;
     }
 
     public int getIdUsuario() {
@@ -41,6 +42,8 @@ public class UsuarioDTO {
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
+    public String getEmailUsuario(){return emailUsuario;}
+    public void setEmailUsuario(String emailUsuario){this.emailUsuario = emailUsuario;}
 
     public String getPasswordUsuario() {
         return passwordUsuario;

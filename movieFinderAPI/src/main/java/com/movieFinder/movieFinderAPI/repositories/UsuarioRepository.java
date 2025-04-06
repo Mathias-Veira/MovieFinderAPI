@@ -15,6 +15,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
      * @param name nombre de usuario a buscar
      * @return objeto Usuario
      */
-    @Query("SELECT u FROM Usuario u WHERE u.nombreUsuario LIKE :nombre_usuario")
+    @Query("SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombre_usuario")
     Usuario findByName(@Param("nombre_usuario") String name);
 }
