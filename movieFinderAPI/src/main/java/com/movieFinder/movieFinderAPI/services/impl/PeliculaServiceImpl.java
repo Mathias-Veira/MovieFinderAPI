@@ -14,11 +14,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.event.EventListener;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDate;
@@ -128,9 +130,9 @@ public class PeliculaServiceImpl implements PeliculaService {
     }
 
     @Override
-    public List<PeliculaDTO> obtenerPeliculas() {
-        PageRequest pageable = PageRequest.of(0,100);
-        return PeliculaMapper.convertirLista(peliculaRepository.findMoviesByDate(pageable));
+    public Page<PeliculaDTO> obtenerPeliculas(@PageableDefault(size = 20) int page) {
+        Pageable pageable = PageRequest.of(page,20);
+        return PeliculaMapper.convertirPagina(peliculaRepository.findAll(pageable));
     }
 
     @Override

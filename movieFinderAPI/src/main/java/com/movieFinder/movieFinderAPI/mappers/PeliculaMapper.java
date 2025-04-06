@@ -2,6 +2,9 @@ package com.movieFinder.movieFinderAPI.mappers;
 
 import com.movieFinder.movieFinderAPI.dtos.PeliculaDTO;
 import com.movieFinder.movieFinderAPI.models.Pelicula;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,16 @@ public class PeliculaMapper {
         }
 
         return  peliculaDTOS;
+    }
+
+    public static Page<PeliculaDTO> convertirPagina(Page<Pelicula> pagePelis) {
+        List<PeliculaDTO> peliculaDTOS = new ArrayList<>();
+        for (Pelicula pelicula : pagePelis.getContent()) {
+            peliculaDTOS.add(convertirADTO(pelicula));
+        }
+
+        Pageable pageable = pagePelis.getPageable();
+        return new PageImpl<>(peliculaDTOS, pageable, pagePelis.getTotalElements());
     }
 
 
