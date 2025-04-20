@@ -141,7 +141,8 @@ public class PeliculaServiceImpl implements PeliculaService {
     }
 
     @Override
-    public List<PeliculaDTO> findMoviesByGenreId(int idGenero) {
-        return PeliculaMapper.convertirLista(peliculaRepository.findMoviesByGenreId(idGenero));
+    public Page<PeliculaDTO> findMoviesByGenreId(int idGenero, @PageableDefault(size = 20) int page) {
+        Pageable pageable = PageRequest.of(page,20);
+        return PeliculaMapper.convertirPagina(peliculaRepository.findMoviesByGenreId(idGenero,pageable));
     }
 }

@@ -23,7 +23,7 @@ public class GeneroController {
         return new ResponseEntity<>(generoService.obtenerGeneros(), HttpStatus.OK);
     }
     @GetMapping("/api/generos/{idPelicula}")
-    ResponseEntity<?> obtenerGenerosById(@PathVariable() int idPelicula) throws IdNotFoundException {
+    ResponseEntity<?> obtenerGenerosByMovieId(@PathVariable() int idPelicula) throws IdNotFoundException {
         return new ResponseEntity<>(generoService.obtenerGenerosByMovieId(idPelicula), HttpStatus.OK);
     }
 }

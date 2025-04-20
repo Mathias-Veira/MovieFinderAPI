@@ -19,5 +19,5 @@ public interface PeliculaRepository extends JpaRepository<Pelicula,Integer> {
             "ON P.idPelicula = PG.idPelicula INNER JOIN Genero G\n" +
             "ON PG.idGenero = G.idGenero\n" +
             "WHERE G.idGenero = :id_genero")
-    List<Pelicula> findMoviesByGenreId(@Param("id_genero") int idGenero);
+    Page<Pelicula> findMoviesByGenreId(@Param("id_genero") int idGenero,Pageable pageable);
 }

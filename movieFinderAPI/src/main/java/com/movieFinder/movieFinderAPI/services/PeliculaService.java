@@ -13,5 +13,5 @@ public interface PeliculaService {
     void almacenarPeliculas ();
     Page<PeliculaDTO> obtenerPeliculas(int page);
     PeliculaDTO obtenerPeliculaById(int idPelicula) throws IdNotFoundException;
-    List<PeliculaDTO> findMoviesByGenreId(int idGenero);
+    Page<PeliculaDTO> findMoviesByGenreId(int idGenero,int page);
 }
