@@ -14,4 +14,5 @@ public interface PeliculaService {
     Page<PeliculaDTO> obtenerPeliculas(int page);
     PeliculaDTO obtenerPeliculaById(int idPelicula) throws IdNotFoundException;
     Page<PeliculaDTO> findMoviesByGenreId(int idGenero,int page);
+    Page<PeliculaDTO> findMoviesByMovieName(String titulo,int page);
 }

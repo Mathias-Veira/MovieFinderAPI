@@ -20,4 +20,6 @@ public interface PeliculaRepository extends JpaRepository<Pelicula,Integer> {
             "ON PG.idGenero = G.idGenero\n" +
             "WHERE G.idGenero = :id_genero")
     Page<Pelicula> findMoviesByGenreId(@Param("id_genero") int idGenero,Pageable pageable);
+    @Query("SELECT P FROM Pelicula P WHERE P.tituloPelicula like %:titulo%")
+    Page<Pelicula> findMoviesByMovieName(@Param("titulo")String titulo,Pageable pageable);
 }

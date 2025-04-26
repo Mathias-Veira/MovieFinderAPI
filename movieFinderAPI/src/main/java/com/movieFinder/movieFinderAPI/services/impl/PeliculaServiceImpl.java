@@ -145,4 +145,10 @@ public class PeliculaServiceImpl implements PeliculaService {
         Pageable pageable = PageRequest.of(page,20);
         return PeliculaMapper.convertirPagina(peliculaRepository.findMoviesByGenreId(idGenero,pageable));
     }
+
+    @Override
+    public Page<PeliculaDTO> findMoviesByMovieName(String titulo,@PageableDefault(size = 20) int page) {
+        Pageable pageable = PageRequest.of(page,20);
+        return PeliculaMapper.convertirPagina(peliculaRepository.findMoviesByMovieName(titulo,pageable));
+    }
 }
