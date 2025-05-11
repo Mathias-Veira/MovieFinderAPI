@@ -44,4 +44,23 @@ public class FavoritoServiceImpl implements FavoritoService {
         return FavoritoMapper.convertirADTO(favoritoRepository.save(new Favorito(0,idUsuario,idPelicula)));
     }
 
+    @Override
+    public void borrarPeliFavoritos(int idUsuario, int idPelicula) throws IdNotFoundException {
+        if(!usuarioRepository.existsById(idUsuario) || !peliculaRepository.existsById(idPelicula)){
+            throw new IdNotFoundException("El usuario o la película no existen");
+        }
+       favoritoRepository.eliminarPeliculaFavorito(idUsuario, idPelicula);
+    }
+
+    @Override
+    public FavoritoDTO obtenerPeliculaFavorito(int idUsuario, int idPelicula) throws IdNotFoundException {
+        if(!usuarioRepository.existsById(idUsuario) || !peliculaRepository.existsById(idPelicula)){
+            throw new IdNotFoundException("El usuario o la película no existen");
+        }
+        if(favoritoRepository.obtenerPeliculaFavorito(idUsuario, idPelicula) == null){
+           throw new IdNotFoundException("El usuario o la película no existe en la lista de favoritos");
+        }
+        return FavoritoMapper.convertirADTO(favoritoRepository.obtenerPeliculaFavorito(idUsuario, idPelicula));
+    }
+
 }

@@ -24,4 +24,13 @@ public class FavoritoController {
     ResponseEntity<?> guardarPeliFavoritos(@RequestBody FavoritoDTO favoritoDTO) throws IdNotFoundException{
         return new ResponseEntity<>(favoritoService.guardarPeliFavoritos(favoritoDTO.getIdUsuario(), favoritoDTO.getIdPelicula()),HttpStatus.CREATED);
     }
+    @DeleteMapping("/api/eliminar/favoritos")
+    ResponseEntity<?> borrarPeliFavoritos(@RequestBody FavoritoDTO favoritoDTO) throws IdNotFoundException{
+        favoritoService.borrarPeliFavoritos(favoritoDTO.getIdUsuario(), favoritoDTO.getIdPelicula());
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @GetMapping("/api/favoritos/{idUsuario}/{idPelicula}")
+    ResponseEntity<?> obtenerPeliculaFavorito(@PathVariable int idUsuario,@PathVariable int idPelicula) throws IdNotFoundException {
+        return new ResponseEntity<>(favoritoService.obtenerPeliculaFavorito(idUsuario, idPelicula), HttpStatus.OK);
+    }
 }

@@ -24,4 +24,14 @@ public class HistorialController {
     ResponseEntity<?> guardarPeliHistorial(@RequestBody HistorialDTO historialDTO) throws IdNotFoundException{
         return new ResponseEntity<>(historialService.guardarPeliHistorial(historialDTO.getIdUsuario(), historialDTO.getIdPelicula()),HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/api/eliminar/historial/{idUsuario}/{idPelicula}")
+    ResponseEntity<?> borrarPeliHistorial(@PathVariable int idUsuario,@PathVariable int idPelicula) throws IdNotFoundException{
+        historialService.borrarPeliHistorial(idUsuario,idPelicula);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @GetMapping("/api/historial/{idUsuario}/{idPelicula}")
+    ResponseEntity<?> obtenerPeliculaHistorial(@PathVariable int idUsuario,@PathVariable int idPelicula) throws IdNotFoundException {
+        return new ResponseEntity<>(historialService.obtenerPeliculaHistorial(idUsuario, idPelicula), HttpStatus.OK);
+    }
 }

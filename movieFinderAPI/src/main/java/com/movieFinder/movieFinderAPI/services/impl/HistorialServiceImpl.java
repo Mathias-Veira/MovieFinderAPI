@@ -42,4 +42,23 @@ public class HistorialServiceImpl implements HistorialService {
         }
         return HistorialMapper.convertirADTO(historialRepository.save(new Historial(0,idUsuario,idPelicula,LocalDate.now())));
     }
+
+    @Override
+    public void borrarPeliHistorial(int idUsuario, int idPelicula) throws IdNotFoundException {
+        if(!usuarioRepository.existsById(idUsuario) || !peliculaRepository.existsById(idPelicula)){
+            throw new IdNotFoundException("El usuario o la película no existen");
+        }
+        historialRepository.eliminarPeliculaHistorial(idUsuario,idPelicula);
+    }
+
+    @Override
+    public HistorialDTO obtenerPeliculaHistorial(int idUsuario, int idPelicula) throws IdNotFoundException {
+        if(!usuarioRepository.existsById(idUsuario) || !peliculaRepository.existsById(idPelicula)){
+            throw new IdNotFoundException("El usuario o la película no existen");
+        }
+        if(historialRepository.obtenerPeliculaHistorial(idUsuario, idPelicula) == null){
+            throw new IdNotFoundException("El usuario o la película no existe en el historial");
+        }
+        return HistorialMapper.convertirADTO( historialRepository.obtenerPeliculaHistorial(idUsuario,idPelicula));
+    }
 }
