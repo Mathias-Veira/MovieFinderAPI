@@ -18,10 +18,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class GeneroController {
     @Autowired
     private GeneroService generoService;
+
+    /**
+     * Método para obtener los géneros
+     * @return Código de estado 200 junto con los géneros
+     */
     @GetMapping("/api/generos")
     ResponseEntity<?> obtenerGeneros(){
         return new ResponseEntity<>(generoService.obtenerGeneros(), HttpStatus.OK);
     }
+
+    /**
+     * Método para obtener los géneros de una película
+     * @param idPelicula identificador de una película
+     * @return Código de estado 200 junto con los géneros de la película
+     * @throws IdNotFoundException Se genera esta excepción si el identificador de la película no existe en la base de datos
+     */
     @GetMapping("/api/generos/{idPelicula}")
     ResponseEntity<?> obtenerGenerosByMovieId(@PathVariable() int idPelicula) throws IdNotFoundException {
         return new ResponseEntity<>(generoService.obtenerGenerosByMovieId(idPelicula), HttpStatus.OK);
