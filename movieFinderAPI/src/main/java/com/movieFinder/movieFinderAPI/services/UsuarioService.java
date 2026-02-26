@@ -1,11 +1,9 @@
 package com.movieFinder.movieFinderAPI.services;
 
 import com.movieFinder.movieFinderAPI.dtos.AccesoDTO;
+import com.movieFinder.movieFinderAPI.dtos.TokenDTO;
 import com.movieFinder.movieFinderAPI.dtos.UsuarioDTO;
-import com.movieFinder.movieFinderAPI.error.IdNotFoundException;
-import com.movieFinder.movieFinderAPI.error.IncompleteDataException;
-import com.movieFinder.movieFinderAPI.error.LoginException;
-import com.movieFinder.movieFinderAPI.error.UserExistsException;
+import com.movieFinder.movieFinderAPI.error.*;
 
 public interface UsuarioService{
     /**
@@ -13,7 +11,7 @@ public interface UsuarioService{
      * @param accesoDTO Información para el acceso de sesión
      * @return Información del usuario si se cumple el acceso
      */
-    UsuarioDTO comprobarAcceso(AccesoDTO accesoDTO) throws IncompleteDataException, LoginException, IdNotFoundException;
+    TokenDTO comprobarAcceso(AccesoDTO accesoDTO) throws IncompleteDataException, LoginException, IdNotFoundException;
 
     /**
      * Se define un método que permite registrar un usuario a partir de la información indicada
@@ -22,4 +20,5 @@ public interface UsuarioService{
      */
     UsuarioDTO crearUsuario(UsuarioDTO usuarioDTO) throws IncompleteDataException, UserExistsException;
     UsuarioDTO obtenerUsuario(String name);
+    TokenDTO sendRefreshToken(String refreshToken) throws NotRefreshTokenException;
 }
