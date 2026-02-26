@@ -1,11 +1,10 @@
 package com.movieFinder.movieFinderAPI.controllers;
 
 import com.movieFinder.movieFinderAPI.dtos.AccesoDTO;
+import com.movieFinder.movieFinderAPI.dtos.RefreshRequestDTO;
+import com.movieFinder.movieFinderAPI.dtos.TokenDTO;
 import com.movieFinder.movieFinderAPI.dtos.UsuarioDTO;
-import com.movieFinder.movieFinderAPI.error.IdNotFoundException;
-import com.movieFinder.movieFinderAPI.error.IncompleteDataException;
-import com.movieFinder.movieFinderAPI.error.LoginException;
-import com.movieFinder.movieFinderAPI.error.UserExistsException;
+import com.movieFinder.movieFinderAPI.error.*;
 import com.movieFinder.movieFinderAPI.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +26,7 @@ public class UsuarioController {
      */
     @PostMapping("/api/login")
     ResponseEntity<?> iniciarSesion(@RequestBody AccesoDTO acceso) throws IncompleteDataException, LoginException, IdNotFoundException {
-        return new ResponseEntity<>(usuarioService.comprobarAcceso(acceso), HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(usuarioService.comprobarAcceso(acceso), HttpStatus.OK);
     }
     /**
      * Endpoint que permite registrar la información correspondiente a un usuario
@@ -47,6 +46,11 @@ public class UsuarioController {
     @GetMapping("/api/usuarios/{nombre}")
     ResponseEntity<?> obtenerUsuario(@PathVariable String nombre) {
         return new ResponseEntity<>(usuarioService.obtenerUsuario(nombre), HttpStatus.OK);
+    }
+
+    @PostMapping("/api/auth/refresh")
+    ResponseEntity<?> refreshToken(@RequestBody RefreshRequestDTO refreshToken) throws NotRefreshTokenException {
+        return new ResponseEntity<>(usuarioService.sendRefreshToken(refreshToken.getRefreshToken()),HttpStatus.OK);
     }
 
 

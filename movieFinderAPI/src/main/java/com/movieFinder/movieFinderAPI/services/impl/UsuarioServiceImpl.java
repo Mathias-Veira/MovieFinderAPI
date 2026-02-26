@@ -1,11 +1,9 @@
 package com.movieFinder.movieFinderAPI.services.impl;
 
 import com.movieFinder.movieFinderAPI.dtos.AccesoDTO;
+import com.movieFinder.movieFinderAPI.dtos.TokenDTO;
 import com.movieFinder.movieFinderAPI.dtos.UsuarioDTO;
-import com.movieFinder.movieFinderAPI.error.IdNotFoundException;
-import com.movieFinder.movieFinderAPI.error.IncompleteDataException;
-import com.movieFinder.movieFinderAPI.error.LoginException;
-import com.movieFinder.movieFinderAPI.error.UserExistsException;
+import com.movieFinder.movieFinderAPI.error.*;
 import com.movieFinder.movieFinderAPI.mappers.UsuarioMapper;
 import com.movieFinder.movieFinderAPI.models.Usuario;
 import com.movieFinder.movieFinderAPI.repositories.UsuarioRepository;
@@ -21,6 +19,10 @@ import org.springframework.stereotype.Service;
 public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
+    private final JWTService jwtService;
+    public UsuarioServiceImpl(JWTService jwtService){
+        this.jwtService = jwtService;
+    }
 
     /**
      * Método que permite comprobar el acceso de sesión de un usuario
@@ -29,7 +31,7 @@ public class UsuarioServiceImpl implements UsuarioService {
      * @return Información del usuario si se cumple el acceso
      */
     @Override
-    public UsuarioDTO comprobarAcceso(AccesoDTO accesoDTO) throws IncompleteDataException, LoginException, IdNotFoundException {
+    public TokenDTO comprobarAcceso(AccesoDTO accesoDTO) throws IncompleteDataException, LoginException, IdNotFoundException {
         if (StringUtils.isBlank(accesoDTO.getNombreUsuario()) || StringUtils.isBlank(accesoDTO.getPasswordUsuario())) {
             throw new IncompleteDataException("El nombre de usuario y contraseña son obligatorios y no pueden estar vacíos");
         }
@@ -41,7 +43,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             //LoginException
             throw new LoginException("Contraseña incorrecta");
         }
-        return UsuarioMapper.convertirADTO(user);
+        return new TokenDTO(jwtService.generateToken(user.getNombreUsuario()), jwtService.generateRefreshToken(user.getNombreUsuario()));
     }
 
     /**
@@ -76,5 +78,14 @@ public class UsuarioServiceImpl implements UsuarioService {
             return null;
         }
         return UsuarioMapper.convertirADTO(usuarioRepository.findByName(name));
+    }
+
+    @Override
+    public TokenDTO sendRefreshToken(String refreshToken) throws NotRefreshTokenException {
+        if (!jwtService.isRefreshtoken(refreshToken) || !jwtService.isValid(refreshToken) ){
+            throw new NotRefreshTokenException("Token no válido");
+        }
+        String userName = jwtService.extractUserName(refreshToken);
+        return new TokenDTO(jwtService.generateToken(userName), jwtService.generateRefreshToken(userName) );
     }
 }
