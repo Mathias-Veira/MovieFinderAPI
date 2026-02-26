@@ -61,4 +61,10 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorDTO error = new ErrorDTO(HttpStatus.BAD_REQUEST,exception.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
+    @ExceptionHandler(NotRefreshTokenException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorDTO> notRefreshTokenException(NotRefreshTokenException exception){
+        ErrorDTO error = new ErrorDTO(HttpStatus.BAD_REQUEST,exception.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
 }
