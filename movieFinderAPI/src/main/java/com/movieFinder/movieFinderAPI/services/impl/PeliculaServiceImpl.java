@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.domain.Page;
@@ -129,6 +130,7 @@ public class PeliculaServiceImpl implements PeliculaService {
         return listas;
     }
 
+    @Cacheable(value = "movies",key = "#page")
     @Override
     public Page<PeliculaDTO> obtenerPeliculas(@PageableDefault(size = 20) int page) {
         Pageable pageable = PageRequest.of(page,20);
