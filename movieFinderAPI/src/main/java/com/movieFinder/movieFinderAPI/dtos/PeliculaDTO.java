@@ -1,8 +1,9 @@
 package com.movieFinder.movieFinderAPI.dtos;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class PeliculaDTO {
+public class PeliculaDTO implements Serializable {
     private int idPelicula;
     private String tituloPelicula;
     private String tituloOriginalPelicula;
