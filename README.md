@@ -7,6 +7,8 @@ Este proyecto es una API que permite gestionar información de películas. Permi
 - SQL SERVER
 - JWT (JSON Web Tokens)
 - Redis
+- JUnit
+- Mockito
 # Funcionalidades
 - Registro e inicio de sesión de usuarios.
 - Autenticación mediante JWT (access y refresh token).
@@ -16,3 +18,4 @@ Este proyecto es una API que permite gestionar información de películas. Permi
 - Valorar una película.
 - Gestionar películas vistas y favoritas.
 - Cacheo de resultados de películas paginadas usando redis para mejorar el rendimiento.
+- Testing utilizando JUnit y Mockito.
