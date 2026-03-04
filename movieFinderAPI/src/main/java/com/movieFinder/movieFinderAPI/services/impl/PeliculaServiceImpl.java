@@ -130,10 +130,9 @@ public class PeliculaServiceImpl implements PeliculaService {
         return listas;
     }
 
-    @Cacheable(value = "movies",key = "#page")
+    @Cacheable(value = "movies",key = "#pageable.pageNumber + '-' + #pageable.pageSize + '-' + #pageable.sort")
     @Override
-    public Page<PeliculaDTO> obtenerPeliculas(@PageableDefault(size = 20) int page) {
-        Pageable pageable = PageRequest.of(page,20);
+    public Page<PeliculaDTO> obtenerPeliculas(Pageable pageable) {
         return PeliculaMapper.convertirPagina(peliculaRepository.findAll(pageable));
     }
 
@@ -143,14 +142,12 @@ public class PeliculaServiceImpl implements PeliculaService {
     }
 
     @Override
-    public Page<PeliculaDTO> findMoviesByGenreId(int idGenero, @PageableDefault(size = 20) int page) {
-        Pageable pageable = PageRequest.of(page,20);
+    public Page<PeliculaDTO> findMoviesByGenreId(int idGenero, Pageable pageable) {
         return PeliculaMapper.convertirPagina(peliculaRepository.findMoviesByGenreId(idGenero,pageable));
     }
 
     @Override
-    public Page<PeliculaDTO> findMoviesByMovieName(String titulo,@PageableDefault(size = 20) int page) {
-        Pageable pageable = PageRequest.of(page,20);
+    public Page<PeliculaDTO> findMoviesByMovieName(String titulo, Pageable pageable) {
         return PeliculaMapper.convertirPagina(peliculaRepository.findMoviesByMovieName(titulo,pageable));
     }
 }
