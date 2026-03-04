@@ -11,17 +11,20 @@ import com.movieFinder.movieFinderAPI.services.UsuarioService;
 import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 
 @Service
 @Lazy
+@Component
 public class UsuarioServiceImpl implements UsuarioService {
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+
+    private final UsuarioRepository usuarioRepository;
     private final JWTService jwtService;
-    public UsuarioServiceImpl(JWTService jwtService){
+    public UsuarioServiceImpl(JWTService jwtService, UsuarioRepository usuarioRepository){
         this.jwtService = jwtService;
+        this.usuarioRepository = usuarioRepository;
     }
 
     /**
